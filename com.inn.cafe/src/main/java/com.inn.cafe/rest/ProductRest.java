@@ -1,12 +1,10 @@
 package com.inn.cafe.rest;
 
+import com.inn.cafe.POJO.Product;
 import com.inn.cafe.wrapper.ProductWrapper;
 import org.checkerframework.checker.units.qual.Luminance;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
@@ -21,6 +19,18 @@ public interface ProductRest {
     ResponseEntity<List<ProductWrapper>> getAllProduct();
 
     @PostMapping(path = "/update")
-    ResponseEntity<String> updateProduct(@RequestBody Map<String,String> requestMap);
+    ResponseEntity<String> updateProduct(@RequestBody Map<String, String> requestMap);
+
+    @PostMapping(path = "/delete/{id}")
+    ResponseEntity<String> deleteProduct(@PathVariable Integer id);
+
+    @PostMapping(path = "/updateStatus")
+    ResponseEntity<String> updateStatus(@RequestBody Map<String, String> requestMap);
+
+    @GetMapping(path = "/getByCategory/{id}")
+    ResponseEntity<List<ProductWrapper>> getByCategory(@PathVariable Integer id);
+
+    @GetMapping(path = "/getById/{id}")
+    ResponseEntity<ProductWrapper> getProductById(@PathVariable Integer id);
 
 }
