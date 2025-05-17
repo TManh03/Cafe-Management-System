@@ -1,0 +1,37 @@
+<body>
+    <mat-card>
+        <b><span>Bảng Điều Khiển</span></b>
+    </mat-card>
+    <br>
+    <div class="row">
+        <div class="column">
+            <div class="card">
+                <div class="container">
+                    <h2 class="title">Tổng Danh Mục:</h2>
+                    <h1 class="title">{{data?.category}}</h1>
+                    <p><button class="button" [routerLink]="['/cafe/category']">Xem Danh Mục</button></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="card">
+                <div class="container">
+                    <h2 class="title">Tổng Sản Phẩm:</h2>
+                    <h1 class="title">{{data?.product}}</h1>
+                    <p><button class="button" [routerLink]="['/cafe/product']">Xem Sản Phẩm</button></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="card">
+                <div class="container">
+                    <h2 class="title">Tổng Hóa Đơn:</h2>
+                    <h1 class="title">{{data?.bill}}</h1>
+                    <p><button class="button" [routerLink]="['/cafe/bill']">Xem Hóa Đơn</button></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
