@@ -81,7 +81,7 @@ public class BillServiceImpl implements BillService {
                 document.add(table);
 
                 Paragraph footer = new Paragraph("Tong: " + requestMap.get("totalAmount") + "\n"
-                        + "Cam on ban đa ghe tham. Xin vui long ghe tham lai!!", getFont("Data"));
+                        + "Cam on ban da ghe tham. Xin vui long ghe tham lai!!", getFont("Data"));
                 document.add(footer);
                 document.close();
                 ;
