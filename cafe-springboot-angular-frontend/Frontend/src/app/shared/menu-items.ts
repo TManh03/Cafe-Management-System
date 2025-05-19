@@ -12,7 +12,8 @@ export interface Menu {
 const MENUITEMS = [
     { state: 'dashboard', name: 'Bảng Điều Khiển', type: 'link', icon: 'dashboard', role: '' },
     { state: 'category', name: 'Quản Lý Danh Mục', type: 'link', icon: 'category', role: 'admin' },
-    { state: 'product', name: 'Quản Lý Sản Phẩm', type: 'link', icon: 'inventory_2', role: 'admin' }
+    { state: 'product', name: 'Quản Lý Sản Phẩm', type: 'link', icon: 'inventory_2', role: 'admin' },
+    { state: 'order', name: 'Quản Lý Đơn Hàng', type: 'link', icon: 'shopping_cart', role: '' }
 ]
 
 @Injectable()
