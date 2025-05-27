@@ -24,6 +24,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -54,8 +55,10 @@ public class BillServiceImpl implements BillService {
                     insertBill(requestMap);
                 }
 
-                String data = "Ten: " + requestMap.get("name") + "\n" + "So dien thoai: " + requestMap.get("contactNumber") +
-                        "\n" + "Email: " + requestMap.get("email") + "\n" + "Phuong thuc thanh toan: " + requestMap.get("paymentMethod");
+                String data = "So ban: " + requestMap.get("tableNumber") +
+                        "\nPhuong thuc thanh toan: " + requestMap.get("paymentMethod") +
+                        "\nNguoi tao: " + jwtFilter.getCurrentUser() +
+                        "\nNgay tao: " + CafeUtils.getCurrentDate();
                 Document document = new Document();
                 PdfWriter.getInstance(document, new FileOutputStream(CafeConstants.STORE_LOCATION + "\\" + fileName + ".pdf"));
 
@@ -150,13 +153,12 @@ public class BillServiceImpl implements BillService {
         try {
             Bill bill = new Bill();
             bill.setUuid((String) requestMap.get("uuid"));
-            bill.setName((String) requestMap.get("name"));
-            bill.setEmail((String) requestMap.get("email"));
-            bill.setContactNumber((String) requestMap.get("contactNumber"));
+            bill.setTableNumber((String) requestMap.get("tableNumber"));
             bill.setPaymentMethod((String) requestMap.get("paymentMethod"));
             bill.setTotal(Integer.parseInt((String) requestMap.get("totalAmount")));
             bill.setProductDetail((String) requestMap.get("productDetails"));
             bill.setCreatedBy(jwtFilter.getCurrentUser());
+            bill.setCreatedDate(LocalDateTime.now());
             billDao.save(bill);
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -164,9 +166,7 @@ public class BillServiceImpl implements BillService {
     }
 
     private boolean validateRequestMap(Map<String, Object> requestMap) {
-        return requestMap.containsKey("name") &&
-                requestMap.containsKey("contactNumber") &&
-                requestMap.containsKey("email") &&
+        return requestMap.containsKey("tableNumber") &&
                 requestMap.containsKey("paymentMethod") &&
                 requestMap.containsKey("productDetails") &&
                 requestMap.containsKey("totalAmount");

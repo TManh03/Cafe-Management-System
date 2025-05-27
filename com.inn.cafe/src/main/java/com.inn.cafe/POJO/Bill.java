@@ -1,11 +1,14 @@
 package com.inn.cafe.POJO;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 @NamedQuery(name = "Bill.getAllBills", query = "select b from Bill b order by b.id desc")
 
@@ -28,15 +31,6 @@ public class Bill implements Serializable {
     @Column(name = "uuid")
     private String uuid;
 
-    @Column(name = "name")
-    private String name;
-
-    @Column(name = "email")
-    private String email;
-
-    @Column(name = "contactnumber")
-    private String contactNumber;
-
     @Column(name = "paymentmethod")
     private String paymentMethod;
 
@@ -48,5 +42,13 @@ public class Bill implements Serializable {
 
     @Column(name = "createdby")
     private String createdBy;
+
+    @Column(name = "tablenumber")
+    private String tableNumber;
+
+    @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
+    @CreationTimestamp
+    @Column(name = "createddate", updatable = false)
+    private LocalDateTime createdDate;
 
 }
