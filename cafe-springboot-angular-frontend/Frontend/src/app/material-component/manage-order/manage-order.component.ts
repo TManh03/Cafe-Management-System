@@ -40,9 +40,7 @@ export class ManageOrderComponent implements OnInit {
     this.ngxService.start();
     this.getCategorys();
     this.manageOrderForm = this.formBuilder.group({
-      name: [null, [Validators.required, Validators.pattern(GlobalConstants.nameRegex)]],
-      email: [null, [Validators.required, Validators.pattern(GlobalConstants.emailRegex)]],
-      contactNumber: [null, [Validators.required, Validators.pattern(GlobalConstants.contactNumberRegex)]],
+      tableNumber: [null, [Validators.required]],
       paymentMethod: [null, [Validators.required]],
       product: [null, [Validators.required]],
       category: [null, [Validators.required]],
@@ -123,8 +121,7 @@ export class ManageOrderComponent implements OnInit {
   }
 
   validateSubmit() {
-    if (this.totalAmount === 0 || this.manageOrderForm.controls['name'].value === null || this.manageOrderForm.controls['email'].value === null ||
-      this.manageOrderForm.controls['contactNumber'].value === null || this.manageOrderForm.controls['paymentMethod'].value === null) {
+    if (this.totalAmount === 0 || this.manageOrderForm.controls['tableNumber'].value === null || this.manageOrderForm.controls['paymentMethod'].value === null) {
       return true;
     }
     else
@@ -154,9 +151,9 @@ export class ManageOrderComponent implements OnInit {
   submitAction() {
     var formData = this.manageOrderForm.value;
     var data = {
-      name: formData.name,
-      email: formData.email,
-      contactNumber: formData.contactNumber,
+      tableNumber: formData.tableNumber,
+      createdBy: formData.creatBy,
+      createdDate: new Date().toISOString(),
       paymentMethod: formData.paymentMethod,
       totalAmount: this.totalAmount.toString(),
       productDetails: JSON.stringify(this.dataSource)

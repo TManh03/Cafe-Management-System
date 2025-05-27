@@ -11,35 +11,14 @@
     <form [formGroup]="manageOrderForm">
         <div fxFlex fxLayout="column">
             <div fxLayout="row wrap">
-                <mat-form-field appearance="standard" fxFlex>
-                    <mat-label>Tên</mat-label>
-                    <input matInput formControlName="name" required>
-                    <mat-error *ngIf="manageOrderForm.controls.name.touched && manageOrderForm.controls.name.invalid">
-                        <span *ngIf="manageOrderForm.controls.name.errors.required">Trường này là bắt buộc.</span>
-                        <span *ngIf="manageOrderForm.controls.name.errors.pattern">Trường này không hợp lệ.</span>
-                    </mat-error>
-                </mat-form-field>
 
                 <mat-form-field appearance="standard" fxFlex>
-                    <mat-label>Email</mat-label>
-                    <input matInput formControlName="email" required>
-                    <mat-error *ngIf="manageOrderForm.controls.email.touched && manageOrderForm.controls.email.invalid">
-                        <span *ngIf="manageOrderForm.controls.email.errors.required">Trường này là bắt buộc.</span>
-                        <span *ngIf="manageOrderForm.controls.email.errors.pattern">Trường này không hợp lệ.</span>
+                    <mat-label>Số Bàn</mat-label>
+                    <input matInput formControlName="tableNumber" required>
+                    <mat-error *ngIf="manageOrderForm.controls.tableNumber.touched && manageOrderForm.controls.tableNumber.invalid">
+                        <span *ngIf="manageOrderForm.controls.tableNumber.errors.required">Trường này là bắt buộc.</span>
                     </mat-error>
-                </mat-form-field>
-
-                <mat-form-field appearance="standard" fxFlex>
-                    <mat-label>Số Điện Thoại</mat-label>
-                    <input matInput formControlName="contactNumber" required>
-                    <mat-error
-                        *ngIf="manageOrderForm.controls.contactNumber.touched && manageOrderForm.controls.contactNumber.invalid">
-                        <span *ngIf="manageOrderForm.controls.contactNumber.errors.required">Trường này là bắt
-                            buộc.</span>
-                        <span *ngIf="manageOrderForm.controls.contactNumber.errors.pattern">Trường này không hợp
-                            lệ.</span>
-                    </mat-error>
-                </mat-form-field>
+                </mat-form-field>       
 
                 <mat-form-field appearance="standard" fxFlex>
                     <mat-label>Phương Thức Thanh Toán</mat-label>

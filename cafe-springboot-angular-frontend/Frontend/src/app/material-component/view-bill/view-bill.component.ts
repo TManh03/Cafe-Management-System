@@ -18,7 +18,7 @@ import { saveAs } from 'file-saver';
 })
 export class ViewBillComponent implements OnInit {
 
-  displayedColumns: string[] = ['name', 'email', 'contactNumber', 'paymentMethod', 'total', 'view'];
+  displayedColumns: string[] = ['tableNumber', 'paymentMethod', 'total', 'view'];
   dataSource: any;
   responseMessage: any;
 
@@ -71,7 +71,7 @@ export class ViewBillComponent implements OnInit {
   handleDeleteAction(values: any) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
-      message: 'delete ' + values.name + ' bill',
+      message: 'delete bill',
       confirmation: true
     };
     const dialogRef = this.dialog.open(ConfirmationComponent, dialogConfig);
@@ -104,10 +104,10 @@ export class ViewBillComponent implements OnInit {
   downloadReportAction(values: any) {
     this.ngxService.start();
     var data = {
-      name: values.name,
-      email: values.email,
+      tableNumber: values.tableNumber,
+      createdBy: values.creatBy,
+      createdDate: new Date().toISOString(),
       uuid: values.uuid,
-      contactNumber: values.contactNumber,
       paymentMethod: values.paymentMethod,
       totalAmount: values.total.toString(),
       productDetails: values.productDetail
