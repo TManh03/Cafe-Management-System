@@ -1,24 +1,4 @@
-/*
-Template Name: Material Pro Admin
-Author: Wrappixel
-Email: niravjoshi87@gmail.com
-File: scss
-*/
-/**
- * Table Of Content
- *
- * 	1. Globals
- *	2. Headers
- *	3. Navigations
- *	4. Banners
- *	5. Footers
- *	6. Posts
- *	7. Widgets
- *	8. Custom Templates
- */
-/******************* 
-Global Styles 
-*******************/
+
 
 * {
   outline: none;
@@ -91,9 +71,7 @@ code {
 .rounded {
   border-radius: $radius;
 }
-/*******************
-Headings
-*******************/
+
 
 h1,
 h2,
@@ -184,9 +162,7 @@ html body {
 .oh {
   overflow: hidden;
 }
-/*******************
-Blockquote
-*******************/
+
 
 html body blockquote {
   border: 1px solid $border;
@@ -202,9 +178,7 @@ ol li {
   margin: 5px 0;
 }
 
-/*******************
-Paddings
-*******************/
+
 html body {
   .p-0 {
     padding: 0px;
@@ -295,9 +269,7 @@ html body {
   }
 }
 
-/*******************
-Margin
-*******************/
+
 html body {
   .m-0 {
     margin: 0px;
@@ -408,9 +380,7 @@ html body {
   }
 }
 
-/*******************
-vertical alignment
-*******************/
+
 html body {
   .vt {
     vertical-align: top;
@@ -424,15 +394,11 @@ html body {
     vertical-align: bottom;
   }
 }
-/*******************
-Opacity
-*******************/
+
 .op-5 {
   opacity: 0.5;
 }
-/*******************
-font weight
-*******************/
+
 html body {
   .font-bold {
     font-weight: 700;
@@ -467,9 +433,7 @@ html body {
     font-size: 20px;
   }
 }
-/*******************
-Border
-*******************/
+
 html body {
   .b-0 {
     border: none;
@@ -490,9 +454,7 @@ html body {
     border: 1px solid $border;
   }
 }
-/*******************
-Thumb size
-*******************/
+
 
 .thumb-sm {
   height: 32px;
@@ -517,9 +479,7 @@ Thumb size
 .radius {
   border-radius: $radius;
 }
-/*******************
-Text Colors
-*******************/
+
 .text-white {
   color: $white !important;
 }
@@ -580,9 +540,7 @@ html body {
     text-align: left;
   }
 }
-/*******************
-Background Colors
-*******************/
+
 
 .bg-primary {
   background-color: $primary !important;
@@ -663,9 +621,7 @@ hr {
   height: 1px;
   background: $border;
 }
-/*******************
-Rounds
-*******************/
+
 .round {
   line-height: 48px;
   color: $white;
@@ -691,9 +647,7 @@ Rounds
 .btn-lg {
   line-height: 48px !important;
 }
-/*******************
-froms
-*******************/
+
 .form-control {
   border: 0px;
   line-height: 25px;
@@ -760,15 +714,11 @@ froms
 //   }
 // }
 
-/*******************
-Grid
-*******************/
+
 .row {
   margin: 0 -10px;
 }
-/*******************
-Table
-*******************/
+
 .table {
   width: 100%;
   text-align: left;
@@ -787,9 +737,7 @@ Table
     white-space: nowrap;
   }
 }
-/*******************
-list inline
-*******************/
+
 .list-inline {
   margin-left: 0px;
   padding: 0px;
@@ -803,9 +751,7 @@ list inline
   }
 }
 
-/*******************/
-/*Chat widget*/
-/*******************/
+
 
 .message-box {
   ul li {
