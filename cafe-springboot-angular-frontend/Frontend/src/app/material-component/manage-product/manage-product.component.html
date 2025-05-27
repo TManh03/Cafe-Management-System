@@ -1,7 +1,7 @@
 <mat-card>
     <b><span>Quản Lý Sản Phẩm</span></b>
     <button mat-flat-button color="primary" class="float-right" (click)="handleAddAction()">
-        <mat-icon>add_circle</mat-icon> Thêm Sản Phẩm
+        <mat-icon>add_shopping_cart</mat-icon> Thêm Sản Phẩm
     </button>
 </mat-card>
 <hr>
@@ -41,7 +41,7 @@
                     <mat-icon>edit</mat-icon>
                 </button>
                 <button mat-icon-button color="primary" matTooltip="Delete" (click)="handleDeleteAction(element)">
-                    <mat-icon>delete</mat-icon>
+                    <mat-icon>delete_forever</mat-icon>
                 </button>
                 <mat-slide-toggle (change)="onChange($event.checked,element.id)"
                     matTooltip="Activate or Deactivate Product" [checked]='element.status'></mat-slide-toggle>

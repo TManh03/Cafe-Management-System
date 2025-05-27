@@ -14,3 +14,9 @@ table{
     color: white;
     background: #673AB7;
 }
+
+::ng-deep .mat-header-cell {
+  background-color: #6f4e37; 
+  color: white; 
+  font-size: 14px;
+}

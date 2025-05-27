@@ -94,9 +94,9 @@
         </div>
     </form>
     <div>
-        <button mat-flat-button color="primary" [disabled]="validateProductAdd()" (click)="add()">Thêm</button>
+        <button mat-flat-button color="primary" [disabled]="validateProductAdd()" (click)="add()"> <mat-icon>request_quote</mat-icon> Thêm</button>
         <button mat-flat-button color="primary" class="float-right">
-            <mat-icon>monetization_on</mat-icon> Tổng Số Tiền: {{ totalAmount }}
+            <mat-icon>attach_money</mat-icon> Tổng Số Tiền: {{ totalAmount }}
         </button>
     </div>
 </mat-card>
