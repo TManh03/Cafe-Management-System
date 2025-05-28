@@ -8,3 +8,41 @@
     margin-bottom: 10px;
     width: auto;
 }
+
+span[mat-dialog-title] {
+        margin: 0; 
+        padding: 0;
+    }
+
+.dialog-content {
+    padding: 24px; 
+}
+
+.message-container {
+    display: flex;
+    align-items: center; 
+    gap: 16px; 
+}
+
+.warning-icon {
+    font-size: 48px; 
+    width: 48px;
+    height: 48px;
+   
+}
+
+.confirmation-message {
+    margin: 0; 
+    font-size: 1.15em;
+    line-height: 1.5; 
+    color: rgba(0, 0, 0, 0.87);
+}
+
+.dialog-actions {
+    padding: 16px 24px 24px; 
+ 
+    button {
+        margin-left: 8px;
+   
+    }
+}

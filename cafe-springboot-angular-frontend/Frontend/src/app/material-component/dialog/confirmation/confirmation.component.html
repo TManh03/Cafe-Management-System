@@ -1,22 +1,22 @@
 <mat-toolbar color="primary">
-<mat-toolbar-row fxLayout="row">
-    <span>Xác nhận</span>
-    <span class="spacer"></span>
-    <button class="mat-dialog-close" mat-icon-button mat-dialog-close>
-        <mat-icon>close</mat-icon>
-    </button>
-</mat-toolbar-row>
+    <mat-toolbar-row style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+        <span mat-dialog-title>Xác Nhận </span> <button mat-icon-button mat-dialog-close aria-label="Đóng cửa sổ">
+            <mat-icon>close</mat-icon>
+        </button>
+    </mat-toolbar-row>
 </mat-toolbar>
 
-<mat-dialog-content class="mat-typography">
-    <h6>Are you sure want to {{details.message}}</h6>
+<mat-dialog-content class="mat-typography dialog-content">
+    <div class="message-container">
+        <mat-icon color="warn" class="warning-icon">warning</mat-icon>
+        <p class="confirmation-message">Bạn có chắc chắn muốn <strong>{{details.message}}</strong>?</p>
+    </div>
 </mat-dialog-content>
 
-<mat-dialog-actions align="end"> 
+<mat-dialog-actions align="end" class="dialog-actions">
     <button mat-raised-button color="primary" (click)="handleChangeAction()">
         <mat-icon>check_circle</mat-icon> Có
     </button>
-
     <button mat-raised-button color="warn" mat-dialog-close>
         <mat-icon>cancel</mat-icon> Không
     </button>
