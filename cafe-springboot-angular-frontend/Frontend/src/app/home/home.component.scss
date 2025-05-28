@@ -107,7 +107,7 @@ body {
 }
 
 .wrapper {
-  height: 65px;
+  height: 80px;
   display: flex;
   align-items: center;
   justify-content:center;
@@ -131,6 +131,7 @@ ul {
   display: flex;
   list-style: none;
   margin: 0px;
+  margin-top: 30px;
   padding: 0px;
 }
 
@@ -141,6 +142,37 @@ a {
   font-size: 1.25em;
   cursor: pointer;
 }
+
+.auth-buttons {
+  list-style: none;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+}
+
+.auth-buttons li {
+  display: inline-block;
+}
+
+.btn-white {
+  padding: 8px 16px;
+  border: 2px solid white;
+  border-radius: 8px;
+  background-color: transparent;
+  color: white;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.btn-white:hover {
+  background-color: white;
+  color: #333;
+  cursor: pointer;
+}
+
 
 @media (max-width: 1024px) {
   .wrapper {

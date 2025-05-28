@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
@@ -11,6 +11,7 @@ import { filter } from 'rxjs/operators';
 import { state } from '@angular/animations';
 import { ProductComponent } from '../dialog/product/product.component';
 import { ConfirmationComponent } from '../dialog/confirmation/confirmation.component';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-manage-product',
@@ -20,9 +21,12 @@ import { ConfirmationComponent } from '../dialog/confirmation/confirmation.compo
 export class ManageProductComponent implements OnInit {
 
   displayedColumns: string[] = ['name', 'categoryName', 'description', 'price', 'edit'];
-  dataSource: any;
+
   // length1:any;
   responseMessage: any;
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  dataSource: MatTableDataSource<any> = new MatTableDataSource();
 
   constructor(private productService: ProductService,
     private ngxService: NgxUiLoaderService,
@@ -36,10 +40,15 @@ export class ManageProductComponent implements OnInit {
     this.tableData();
   }
 
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+  }
+
   tableData() {
     this.productService.getProducts().subscribe((response: any) => {
       this.ngxService.stop();
       this.dataSource = new MatTableDataSource(response);
+      this.dataSource.paginator = this.paginator;
     }, (error: any) => {
       this.ngxService.stop();
       console.log(error.error?.message);
@@ -56,6 +65,9 @@ export class ManageProductComponent implements OnInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
 
   handleAddAction() {

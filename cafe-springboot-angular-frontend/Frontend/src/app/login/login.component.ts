@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { SnackbarService } from '../services/snackbar.service';
 import { GlobalConstants } from '../shared/global-constants';
@@ -13,6 +13,10 @@ import { GlobalConstants } from '../shared/global-constants';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+
+  @Output() openSignup = new EventEmitter<void>();
+  @Output() openForgotPassword = new EventEmitter<void>();
+
   hide = true;
   loginForm: any = FormGroup;
   responseMessage: any;
@@ -22,7 +26,8 @@ export class LoginComponent implements OnInit {
     private userService: UserService,
     public dialogRef: MatDialogRef<LoginComponent>,
     private ngxService: NgxUiLoaderService,
-    private snackbarService: SnackbarService) { }
+    private snackbarService: SnackbarService,
+    private dialog: MatDialog,) { }
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
@@ -38,20 +43,30 @@ export class LoginComponent implements OnInit {
       email: formData.email,
       password: formData.password
     }
-    this.userService.login(data).subscribe((response:any)=>{
+    this.userService.login(data).subscribe((response: any) => {
       this.ngxService.stop();
       this.dialogRef.close();
-      localStorage.setItem('token',response.token);
+      localStorage.setItem('token', response.token);
       this.router.navigate(['/cafe/dashboard'])
-    },(error)=>{
+    }, (error) => {
       this.ngxService.stop();
-      if(error.error?.message){
+      if (error.error?.message) {
         this.responseMessage = error.error?.message;
       }
-      else{
+      else {
         this.responseMessage = GlobalConstants.genericError;
       }
-      this.snackbarService.openSnackBar(this.responseMessage,GlobalConstants.error);
+      this.snackbarService.openSnackBar(this.responseMessage, GlobalConstants.error);
     })
+  }
+
+  onSignupClick() {
+    this.dialogRef.close();
+    this.openSignup.emit();
+  }
+
+  onForgotPasswordClick() {
+    this.dialogRef.close();
+    this.openForgotPassword.emit();
   }
 }

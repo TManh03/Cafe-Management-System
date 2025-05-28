@@ -1,64 +1,65 @@
-<mat-toolbar color="primary">
-    <mat-toolbar-row fxLayout="row">
-        <span>{{dialogData.action}} Product</span>
-        <span class="spacer"></span>
-        <button class="mat-dialog-close" mat-icon-button mat-dialog-close>
-            <mat-icon>close</mat-icon>
-        </button>
-    </mat-toolbar-row>
+<mat-toolbar color="primary" class="toolbar">
+  <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
+    <span>{{ dialogData.action }} Sản Phẩm</span>
+    <button mat-icon-button mat-dialog-close matTooltip="Đóng">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-toolbar-row>
 </mat-toolbar>
 
-<mat-dialog-content class="mat-typography">
-    <form [formGroup]="productForm">
-        <div fxFlex fxLayout="column">
-            <div fxLayout="row wrap">
-                <mat-form-field appearance="standard" fxFlex>
-                    <mat-label>Tên Sản Phẩm</mat-label>
-                    <input matInput formControlName="name" required>
-                    <mat-error *ngIf="productForm.controls.name.touched && productForm.controls.name.invalid">
-                        <span *ngIf="productForm.controls.name.errors.required">Trường này là bắt buộc.</span>
-                        <span *ngIf="productForm.controls.name.errors.pattern">Trường này không hợp lệ.</span>
-                    </mat-error>
-                </mat-form-field>
-            </div>
+<mat-dialog-content class="mat-typography" style="padding: 16px;">
+  <form [formGroup]="productForm" (ngSubmit)="handleSubmit()" fxLayout="column" fxLayoutGap="16px">
 
-            <div fxLayout="row wrap">
-                <mat-form-field appearance="standard" fxFlex>
-                    <mat-label>Giá</mat-label>
-                    <input matInput formControlName="price" required>
-                    <mat-error *ngIf="productForm.controls.price.touched && productForm.controls.price.invalid">
-                        <span *ngIf="productForm.controls.price.errors.required">Trường này là bắt buộc.</span>
-                        <span *ngIf="productForm.controls.price.errors.pattern">Trường này không hợp lệ.</span>
-                    </mat-error>
-                </mat-form-field>
+    <mat-form-field appearance="outline" fxFlex="100%">
+      <mat-label>Tên Sản Phẩm</mat-label>
+      <input matInput formControlName="name" required />
+      <mat-error *ngIf="productForm.controls.name.touched && productForm.controls.name.invalid">
+        <span *ngIf="productForm.controls.name.errors?.required">Trường này là bắt buộc.</span>
+        <span *ngIf="productForm.controls.name.errors?.pattern">Trường này không hợp lệ.</span>
+      </mat-error>
+    </mat-form-field>
 
-                <mat-form-field appearance="standard" fxFlex>
-                    <mat-label>Danh Mục</mat-label>
-                    <mat-select formControlName="categoryId">
-                        <mat-option *ngFor="let category of categorys" [value]="category.id">
-                            {{category.name}}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
-            </div>
+    <div fxLayout="row" fxLayoutGap="16px" fxFlexFill>
+      <mat-form-field appearance="outline" fxFlex>
+        <mat-label>Giá</mat-label>
+        <input matInput formControlName="price" required />
+        <mat-error *ngIf="productForm.controls.price.touched && productForm.controls.price.invalid">
+          <span *ngIf="productForm.controls.price.errors?.required">Trường này là bắt buộc.</span>
+          <span *ngIf="productForm.controls.price.errors?.pattern">Trường này không hợp lệ.</span>
+        </mat-error>
+      </mat-form-field>
 
-            <div fxLayout="row wrap">
-                <mat-form-field appearance="standard" fxFlex>
-                    <mat-label>Mô Tả</mat-label>
-                    <input matInput formControlName="description" required>
-                    <mat-error *ngIf="productForm.controls.description.touched && productForm.controls.description.invalid">
-                        <span *ngIf="productForm.controls.description.errors.required">Trường này là bắt buộc.</span>
-                        <span *ngIf="productForm.controls.description.errors.pattern">Trường này không hợp lệ.</span>
-                    </mat-error>
-                </mat-form-field>
-            </div>
-        </div>
-    </form>
+      <mat-form-field appearance="outline" fxFlex>
+        <mat-label>Danh Mục</mat-label>
+        <mat-select formControlName="categoryId" required>
+          <mat-option *ngFor="let category of categorys" [value]="category.id">
+            {{ category.name }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="productForm.controls.categoryId.touched && productForm.controls.categoryId.invalid">
+          <span>Trường này là bắt buộc.</span>
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field appearance="outline" fxFlex="100%">
+      <mat-label>Mô Tả</mat-label>
+      <input matInput formControlName="description" required />
+      <mat-error *ngIf="productForm.controls.description.touched && productForm.controls.description.invalid">
+        <span *ngIf="productForm.controls.description.errors?.required">Trường này là bắt buộc.</span>
+        <span *ngIf="productForm.controls.description.errors?.pattern">Trường này không hợp lệ.</span>
+      </mat-error>
+    </mat-form-field>
+
+  </form>
 </mat-dialog-content>
 
-<mat-dialog-actions align="end">
-    <button mat-raised-button color="primary" type="submit" (click)="handleSubmit()" [disabled]="!(productForm.valid && productForm.dirty)">
-        <mat-icon>save</mat-icon> {{action}}
-    </button>
-    <button mat-raised-button color="warn" mat-dialog-close><mat-icon>cancel</mat-icon> Close</button>
+<mat-dialog-actions align="end" style="padding: 16px;">
+  <button mat-raised-button color="primary" type="submit"
+    [disabled]="!(productForm.valid && productForm.dirty)" (click)="handleSubmit()">
+    <mat-icon>save</mat-icon> {{ dialogData.action }}
+  </button>
+  <button mat-raised-button color="warn" mat-dialog-close>
+    <mat-icon>cancel</mat-icon> Đóng
+  </button>
 </mat-dialog-actions>

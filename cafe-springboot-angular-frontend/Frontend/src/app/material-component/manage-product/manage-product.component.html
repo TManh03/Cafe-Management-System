@@ -1,14 +1,17 @@
 <mat-card>
-    <b><span>Quản Lý Sản Phẩm</span></b>
-    <button mat-flat-button color="primary" class="float-right" (click)="handleAddAction()">
+    <div class="card-header">
+    <p class="text-heading2-bold">Quản Lý Sản Phẩm</p>
+    <button mat-flat-button color="primary" (click)="handleAddAction()">
         <mat-icon>add_shopping_cart</mat-icon> Thêm Sản Phẩm
     </button>
+    </div>
 </mat-card>
 <hr>
 <mat-card>
     <mat-form-field appearance="standard">
         <mat-label>Tìm Kiếm</mat-label>
         <input matInput (keyup)="applyFilter($event)" #input>
+        <mat-icon matSuffix>search</mat-icon>
     </mat-form-field>
 </mat-card>
 <hr>
@@ -51,4 +54,5 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky:true"></tr>
         <tr mat-row *matRowDef="let row;columns:displayedColumns;"></tr>
     </table>
+    <mat-paginator [pageSizeOptions]="[10,20]" showFirstLastButtons></mat-paginator>
 </div>

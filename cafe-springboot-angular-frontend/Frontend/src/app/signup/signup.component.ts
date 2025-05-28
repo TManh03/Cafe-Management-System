@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
 import { SnackbarService } from '../services/snackbar.service';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { GlobalConstants } from '../shared/global-constants';
 import { error } from 'console';
@@ -14,6 +14,10 @@ import { error } from 'console';
   styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent implements OnInit {
+
+  @Output() openLogin = new EventEmitter<void>();
+
+
   password = true;
   confirmPassword = true;
   signupForm: any = FormGroup;
@@ -24,7 +28,8 @@ export class SignupComponent implements OnInit {
     private userService: UserService,
     private snackbarService: SnackbarService,
     public dialogRef: MatDialogRef<SignupComponent>,
-    private ngxService: NgxUiLoaderService
+    private ngxService: NgxUiLoaderService,
+    private dialog: MatDialog,
   ) { }
 
   ngOnInit(): void {
@@ -64,13 +69,18 @@ export class SignupComponent implements OnInit {
       this.router.navigate(['/']);
     }, (error) => {
       this.ngxService.stop();
-      if(error.error?.message){
+      if (error.error?.message) {
         this.responseMessage = error.error?.message;
       }
-      else{
+      else {
         this.responseMessage = GlobalConstants.genericError;
       }
-      this.snackbarService.openSnackBar(this.responseMessage,GlobalConstants.error);
+      this.snackbarService.openSnackBar(this.responseMessage, GlobalConstants.error);
     })
+  }
+
+  onLoginClick() {
+    this.dialogRef.close();
+    this.openLogin.emit();
   }
 }

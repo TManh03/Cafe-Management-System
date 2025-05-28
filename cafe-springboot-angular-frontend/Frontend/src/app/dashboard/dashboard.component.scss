@@ -71,6 +71,12 @@ body {
   .button:hover {
     background-color: #555;
   }
+
+  .text-heading2-bold{
+    font-size: 30px;
+    line-height: 100%;
+    font-weight: 700;
+  }
   
   @media screen and (max-width: 650px) {
     .column {

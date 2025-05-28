@@ -1,11 +1,12 @@
 <mat-card>
-    <b><span>Xem Hóa Đơn</span></b>
+    <p class="text-heading2-bold">Xem Hóa Đơn</p>
 </mat-card>
 <hr>
 <mat-card>
     <mat-form-field appearance="standard">
         <mat-label>Tìm Kiếm</mat-label>
         <input matInput (keyup)="applyFilter($event)" #input>
+        <mat-icon matSuffix>search</mat-icon>
     </mat-form-field>
 </mat-card>
 <hr>

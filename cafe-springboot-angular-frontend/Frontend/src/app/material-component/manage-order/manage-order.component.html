@@ -1,105 +1,100 @@
 <mat-card>
-    <b><span>Quản Lý Đơn Hàng</span></b>
-    <button mat-flat-button color="primary" class="float-right" [disabled]="validateSubmit()" (click)="submitAction()">
-        <mat-icon>print</mat-icon> Submit & Get Bill
-    </button>
+    <div class="card-header">
+        <p class="text-heading2-bold">Quản Lý Đơn Hàng</p>
+        <button mat-flat-button color="primary" [disabled]="validateSubmit()" (click)="submitAction()">
+            <mat-icon>print</mat-icon> Submit & Get Bill
+        </button>
+    </div>
 </mat-card>
 <hr>
 
-<mat-card>
+<mat-card style="padding: 16px; margin-bottom: 16px;">
     <b><span>Thông Tin Khách Hàng:</span></b>
-    <form [formGroup]="manageOrderForm">
-        <div fxFlex fxLayout="column">
-            <div fxLayout="row wrap">
+    <form [formGroup]="manageOrderForm" fxLayout="column" fxLayoutGap="16px">
 
-                <mat-form-field appearance="standard" fxFlex>
-                    <mat-label>Số Bàn</mat-label>
-                    <input matInput formControlName="tableNumber" required>
-                    <mat-error *ngIf="manageOrderForm.controls.tableNumber.touched && manageOrderForm.controls.tableNumber.invalid">
-                        <span *ngIf="manageOrderForm.controls.tableNumber.errors.required">Trường này là bắt buộc.</span>
-                    </mat-error>
-                </mat-form-field>       
+        <div fxLayout="row wrap" fxLayoutGap="16px">
+            <mat-form-field appearance="outline" fxFlex>
+                <mat-label>Số Bàn</mat-label>
+                <input matInput formControlName="tableNumber" required />
+                <mat-error
+                    *ngIf="manageOrderForm.controls.tableNumber.touched && manageOrderForm.controls.tableNumber.invalid">
+                    <span *ngIf="manageOrderForm.controls.tableNumber.errors?.required">Trường này là bắt buộc.</span>
+                </mat-error>
+            </mat-form-field>
 
-                <mat-form-field appearance="standard" fxFlex>
-                    <mat-label>Phương Thức Thanh Toán</mat-label>
-                    <mat-select formControlName="paymentMethod" required>
-                        <mat-option value="Cash">Tiền Mặt</mat-option>
-                        <mat-option value="Credit Card">Thẻ Tín Dụng</mat-option>
-                        <mat-option value="Debit Card">Thẻ Ghi Nợ</mat-option>
-                    </mat-select>
-                    <mat-error
-                        *ngIf="manageOrderForm.controls.paymentMethod.touched && manageOrderForm.controls.paymentMethod.invalid">
-                        <span *ngIf="manageOrderForm.controls.paymentMethod.errors.required">Trường này là bắt
-                            buộc.</span>
-                        <span *ngIf="manageOrderForm.controls.paymentMethod.errors.pattern">Trường này không hợp
-                            lệ.</span>
-                    </mat-error>
-                </mat-form-field>
-            </div>
+            <mat-form-field appearance="outline" fxFlex>
+                <mat-label>Phương Thức Thanh Toán</mat-label>
+                <mat-select formControlName="paymentMethod" required>
+                    <mat-option value="Cash">Tiền Mặt</mat-option>
+                    <mat-option value="Credit Card">Thẻ Tín Dụng</mat-option>
+                    <mat-option value="Debit Card">Thẻ Ghi Nợ</mat-option>
+                </mat-select>
+                <mat-error
+                    *ngIf="manageOrderForm.controls.paymentMethod.touched && manageOrderForm.controls.paymentMethod.invalid">
+                    <span>Trường này là bắt buộc.</span>
+                </mat-error>
+            </mat-form-field>
         </div>
+
     </form>
 </mat-card>
-<hr>
-<mat-card>
+
+<mat-card style="padding: 16px;">
     <b><span>Chọn Sản Phẩm:</span></b>
 
-    <form [formGroup]="manageOrderForm">
-        <div fxFlex fxLayout="column">
-            <div fxLayout="row wrap">
-                <mat-form-field appearance="standard" fxFlex>
-                    <mat-label>Danh Mục</mat-label>
-                    <mat-select formControlName="category" (selectionChange)="getProductsByCategory($event.value)">
-                        <mat-option *ngFor="let category of categorys" [value]="category">
-                            {{ category.name }}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
+    <form [formGroup]="manageOrderForm" fxLayout="column" fxLayoutGap="16px">
+        <div fxLayout="row wrap" fxLayoutGap="16px">
 
-                <mat-form-field appearance="standard" fxFlex>
-                    <mat-label>Sản Phẩm</mat-label>
-                    <mat-select formControlName="product" (selectionChange)="getProductDetails($event.value)">
-                        <mat-option *ngFor="let product of products" [value]="product">
-                            {{ product.name }}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
+            <mat-form-field appearance="outline" fxFlex>
+                <mat-label>Danh Mục</mat-label>
+                <mat-select formControlName="category" (selectionChange)="getProductsByCategory($event.value)">
+                    <mat-option *ngFor="let category of categorys" [value]="category">
+                        {{ category.name }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
 
-                <mat-form-field appearance="standard" fxFlex>
-                    <mat-label>Giá</mat-label>
-                    <input matInput formControlName="price" required readonly>
-                    <mat-error *ngIf="manageOrderForm.controls.price.touched && manageOrderForm.controls.price.invalid">
-                        <span *ngIf="manageOrderForm.controls.price.errors.required">Trường này là bắt buộc.</span>
-                        <span *ngIf="manageOrderForm.controls.price.errors.pattern">Trường này không hợp lệ.</span>
-                    </mat-error>
-                </mat-form-field>
+            <mat-form-field appearance="outline" fxFlex>
+                <mat-label>Sản Phẩm</mat-label>
+                <mat-select formControlName="product" (selectionChange)="getProductDetails($event.value)">
+                    <mat-option *ngFor="let product of products" [value]="product">
+                        {{ product.name }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
 
-                <mat-form-field appearance="standard" fxFlex>
-                    <mat-label>Số Lượng</mat-label>
-                    <input matInput formControlName="quantity" required (keyup)="setQuantity($event)" #input>
-                    <mat-error *ngIf="manageOrderForm.controls.quantity.touched && manageOrderForm.controls.quantity.invalid">
-                        <span *ngIf="manageOrderForm.controls.quantity.errors.required">Trường này là bắt buộc.</span>
-                        <span *ngIf="manageOrderForm.controls.quantity.errors.pattern">Trường này không hợp lệ.</span>
-                    </mat-error>
-                </mat-form-field>
+            <mat-form-field appearance="outline" fxFlex>
+                <mat-label>Giá</mat-label>
+                <input matInput formControlName="price" readonly />
+            </mat-form-field>
 
-                <mat-form-field appearance="standard" fxFlex>
-                    <mat-label>Tổng</mat-label>
-                    <input matInput formControlName="total" required readonly>
-                    <mat-error *ngIf="manageOrderForm.controls.total.touched && manageOrderForm.controls.total.invalid">
-                        <span *ngIf="manageOrderForm.controls.total.errors.required">Trường này là bắt buộc.</span>
-                        <span *ngIf="manageOrderForm.controls.total.errors.pattern">Trường này không hợp lệ.</span>
-                    </mat-error>
-                </mat-form-field>
-            </div>
+            <mat-form-field appearance="outline" fxFlex>
+                <mat-label>Số Lượng</mat-label>
+                <input matInput formControlName="quantity" (keyup)="setQuantity($event)" />
+                <mat-error
+                    *ngIf="manageOrderForm.controls.quantity.touched && manageOrderForm.controls.quantity.invalid">
+                    <span *ngIf="manageOrderForm.controls.quantity.errors?.required">Trường này là bắt buộc.</span>
+                    <span *ngIf="manageOrderForm.controls.quantity.errors?.pattern">Trường này không hợp lệ.</span>
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" fxFlex>
+                <mat-label>Tổng</mat-label>
+                <input matInput formControlName="total" readonly />
+            </mat-form-field>
         </div>
     </form>
-    <div>
-        <button mat-flat-button color="primary" [disabled]="validateProductAdd()" (click)="add()"> <mat-icon>request_quote</mat-icon> Thêm</button>
-        <button mat-flat-button color="primary" class="float-right">
+
+    <div fxLayout="row" fxLayoutAlign="space-between center" style="margin-top: 16px;">
+        <button mat-raised-button color="primary" [disabled]="validateProductAdd()" (click)="add()">
+            <mat-icon>request_quote</mat-icon> Thêm
+        </button>
+        <button mat-raised-button color="accent" disabled>
             <mat-icon>attach_money</mat-icon> Tổng Số Tiền: {{ totalAmount }}
         </button>
     </div>
 </mat-card>
+
 <hr>
 <div class="responsive_table">
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">

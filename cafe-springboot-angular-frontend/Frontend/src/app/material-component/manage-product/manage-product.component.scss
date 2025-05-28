@@ -9,3 +9,18 @@ mat-card{
 table{
     width: 100%;
 }
+
+.text-heading2-bold {
+    font-size: 30px;
+    line-height: 100%;
+    font-weight: 700;
+    margin: 0;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}

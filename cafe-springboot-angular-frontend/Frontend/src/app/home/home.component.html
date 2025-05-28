@@ -4,14 +4,12 @@
 <div class="wrapper sticky">
   <nav class="navbar-fixed-top">
     <a href="#" class="logo">
-      <mat-icon>local_cafe</mat-icon> Hệ Thống Quản Lý Quán Coffee
+      <img src="../../assets/img/logo.jpg" alt="Logo Quán Coffee" style="height: 80px;" />
     </a>
-    <ul>
-      <li>
-        <a (click)="handleLoginAction()">Đăng Nhập</a>
-        <a (click)="handleSignupAction()">Đăng Ký</a>
-        <a (click)="handleForgotPasswordAction()">Quên Mật Khẩu?</a>
-      </li>
+    <ul class="auth-buttons">
+      <li><a class="btn-white" (click)="openLogin()">Đăng Nhập</a></li>
+      <li><a class="btn-white" (click)="openSignup()">Đăng Ký</a></li>
+      <li><a class="btn-white" (click)="openForgotPassword()">Quên Mật Khẩu?</a></li>
     </ul>
   </nav>
 </div>

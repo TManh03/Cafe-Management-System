@@ -7,3 +7,13 @@
 mat-form-field{
     padding: 5px;
 }
+
+.text-link {
+  color: #3f51b5;
+  cursor: pointer;
+  text-decoration: none;
+}
+.text-link:hover {
+  text-decoration: underline;
+}
+

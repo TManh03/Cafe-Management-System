@@ -1,16 +1,10 @@
 <div class="main-container">
-    <mat-toolbar color="primary" class="topbar telative">
-        <div class="navbar-header">
-            <button mat-icon-button (click)="snav.toggle()" value="sidebarclosed" style="vertical-align: bottom;">
-                <mat-icon>menu_open</mat-icon>
-            </button><b>
-                <span style="vertical-align: middle;">
-                    <mat-icon>local_cafe</mat-icon>
-                </span>
-            </b>
-            <span fxShow="false" fxShow.gt-xs>
-                Hệ Thống Quản Lý Quán Coffee
-            </span>
+    <mat-toolbar color="primary" class="topbar telative" style="display: flex; align-items: center; height: 80px;">
+        <div class="navbar-header" style="display: flex; align-items: center; height: 100%;">
+            <button mat-icon-button (click)="snav.toggle()" value="sidebarclosed" style="display: flex; align-items: center; justify-content: center; height: 100%;">
+                <mat-icon style="font-size: 32px;">menu_open</mat-icon>
+            </button>
+            <img src="../../assets/img/logo.jpg" alt="Logo Quán Coffee" style="height: 80px;" />
         </div>
         <span fxFlex></span>
         <app-header></app-header>
