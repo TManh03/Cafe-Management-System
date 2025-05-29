@@ -1,43 +1,43 @@
-<mat-toolbar color="primary" class="toolbar">
+<mat-toolbar color="primary">
   <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
-    <span>Đăng Ký</span>
+    <span class="register-title">Đăng Ký</span>
     <button mat-icon-button mat-dialog-close>
       <mat-icon>close</mat-icon>
     </button>
   </mat-toolbar-row>
 </mat-toolbar>
 
-<mat-dialog-content class="mat-typography" fxLayout="column" fxLayoutGap="20px" style="padding: 16px;">
+<mat-dialog-content class="mat-typography register-content" fxLayout="column" fxLayoutGap="20px">
   <form [formGroup]="signupForm">
 
-    <mat-form-field appearance="outline" style="width: 100%;">
+    <mat-form-field appearance="outline" class="register-form-field">
       <mat-label>Tên</mat-label>
       <input matInput formControlName="name" required />
       <mat-error *ngIf="signupForm.controls.name.touched && signupForm.controls.name.invalid">
         <span *ngIf="signupForm.controls.name.errors?.required">Trường này là bắt buộc.</span>
-        <span *ngIf="signupForm.controls.name.errors?.pattern">Trường này không hợp lệ.</span>
+        <span *ngIf="signupForm.controls.name.errors?.pattern">Tên không hợp lệ.</span>
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field appearance="outline" style="width: 100%;">
+    <mat-form-field appearance="outline" class="register-form-field">
       <mat-label>Số điện thoại</mat-label>
       <input matInput formControlName="contactNumber" required />
       <mat-error *ngIf="signupForm.controls.contactNumber.touched && signupForm.controls.contactNumber.invalid">
         <span *ngIf="signupForm.controls.contactNumber.errors?.required">Trường này là bắt buộc.</span>
-        <span *ngIf="signupForm.controls.contactNumber.errors?.pattern">Trường này không hợp lệ.</span>
+        <span *ngIf="signupForm.controls.contactNumber.errors?.pattern">Số điện thoại không hợp lệ.</span>
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field appearance="outline" style="width: 100%;">
+    <mat-form-field appearance="outline" class="register-form-field">
       <mat-label>Email</mat-label>
       <input matInput formControlName="email" required />
       <mat-error *ngIf="signupForm.controls.email.touched && signupForm.controls.email.invalid">
         <span *ngIf="signupForm.controls.email.errors?.required">Trường này là bắt buộc.</span>
-        <span *ngIf="signupForm.controls.email.errors?.pattern">Trường này không hợp lệ.</span>
+        <span *ngIf="signupForm.controls.email.errors?.email">Email không hợp lệ.</span>
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field appearance="outline" style="width: 100%;">
+    <mat-form-field appearance="outline" class="register-form-field">
       <mat-label>Mật khẩu</mat-label>
       <input matInput [type]="password ? 'password' : 'text'" formControlName="password" required />
       <button type="button" mat-icon-button matSuffix (click)="password = !password">
@@ -48,7 +48,7 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field appearance="outline" style="width: 100%;">
+    <mat-form-field appearance="outline" class="register-form-field">
       <mat-label>Xác nhận mật khẩu</mat-label>
       <input matInput [type]="confirmPassword ? 'password' : 'text'" formControlName="confirmPassword" required />
       <button type="button" mat-icon-button matSuffix (click)="confirmPassword = !confirmPassword">
@@ -62,15 +62,13 @@
       </mat-hint>
     </mat-form-field>
 
-
-    <div fxLayout="row" fxLayoutAlign="start center" style="font-size: 0.9rem;">
+    <div fxLayout="row" fxLayoutAlign="start center" class="register-links">
       <a class="text-link" (click)="onLoginClick()">Đã có tài khoản? Đăng nhập</a>
     </div>
-
   </form>
 </mat-dialog-content>
 
-<mat-dialog-actions align="end" style="padding: 16px;">
+<mat-dialog-actions align="end" class="register-actions">
   <button mat-raised-button color="primary" type="submit" (click)="handleSubmit()" [disabled]="validateSubmit() || !(signupForm.valid && signupForm.dirty)">
     <mat-icon>person_add</mat-icon> Đăng Ký
   </button>

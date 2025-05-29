@@ -47,7 +47,7 @@ mat-sidenav {
             }
         }
         &.selected > .mat-list-item-content > a{
-            background: $themecolor-alt;
+            background: linear-gradient(to right, #6f4e37, #a68a64);
             border-radius: $radius;
             color:$white;
             

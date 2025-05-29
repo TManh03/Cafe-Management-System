@@ -1,16 +1,16 @@
 <mat-toolbar color="primary">
     <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
-        <span>Đăng Nhập</span>
+        <span class="login-title">Đăng Nhập</span>
         <button mat-icon-button mat-dialog-close>
             <mat-icon>close</mat-icon>
         </button>
     </mat-toolbar-row>
 </mat-toolbar>
 
-<mat-dialog-content class="mat-typography" fxLayout="column" fxLayoutGap="20px" style="padding: 16px;">
+<mat-dialog-content class="mat-typography login-content" fxLayout="column" fxLayoutGap="20px">
     <form [formGroup]="loginForm">
 
-        <mat-form-field appearance="outline" style="width: 100%;">
+        <mat-form-field appearance="outline" class="login-form-field">
             <mat-label>Email</mat-label>
             <input matInput formControlName="email" required />
             <mat-error *ngIf="loginForm.controls.email.touched && loginForm.controls.email.invalid">
@@ -19,8 +19,7 @@
             </mat-error>
         </mat-form-field>
 
-
-        <mat-form-field appearance="outline" style="width: 100%;">
+        <mat-form-field appearance="outline" class="login-form-field">
             <mat-label>Mật khẩu</mat-label>
             <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" required />
             <button type="button" mat-icon-button matSuffix (click)="hide = !hide">
@@ -31,15 +30,14 @@
             </mat-error>
         </mat-form-field>
 
-
-        <div fxLayout="row" fxLayoutAlign="space-between center" style="font-size: 0.9rem;">
+        <div fxLayout="row" fxLayoutAlign="space-between center" class="login-links">
             <a (click)="onSignupClick()" class="text-link">Chưa có tài khoản? Đăng ký</a>
             <a (click)="onForgotPasswordClick()" class="text-link">Quên mật khẩu?</a>
         </div>
     </form>
 </mat-dialog-content>
 
-<mat-dialog-actions align="end" style="padding: 16px;">
+<mat-dialog-actions align="end" class="login-actions">
     <button mat-raised-button color="primary" (click)="handleSubmit()" [disabled]="loginForm.invalid">
         <mat-icon>person</mat-icon> Đăng Nhập
     </button>

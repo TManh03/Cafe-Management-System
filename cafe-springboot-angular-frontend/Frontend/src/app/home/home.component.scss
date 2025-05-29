@@ -37,7 +37,7 @@ body {
 }
 
 /* Column container */
-.row {  
+.row {
   display: flex;
   flex-wrap: wrap;
 }
@@ -69,12 +69,21 @@ body {
   padding: 6px;
   text-align: center;
   color: white;
-  background:#6f4e37;
+  background: linear-gradient(to right, #6f4e37, #a68a64);
+  box-shadow: 0 -4px 12px rgba(111, 78, 55, 0.3);
+}
+
+.footer h2 {
+  margin: 0;
+  font-size: 18px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 /* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 700px) {
-  .row, .navbar {   
+
+  .row,
+  .navbar {
     flex-direction: column;
   }
 }
@@ -110,8 +119,9 @@ body {
   height: 80px;
   display: flex;
   align-items: center;
-  justify-content:center;
-  background-color: #6f4e37;
+  justify-content: center;
+  background: linear-gradient(to right, #6f4e37, #a68a64);
+  box-shadow: 0 4px 12px rgba(111, 78, 55, 0.3);
 }
 
 nav {
@@ -157,20 +167,22 @@ a {
 }
 
 .btn-white {
-  padding: 8px 16px;
-  border: 2px solid white;
-  border-radius: 8px;
-  background-color: transparent;
-  color: white;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  font-weight: 500;
+    background: linear-gradient(to right, #6f4e37, #a68a64);
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(111, 78, 55, 0.2);
+    display: inline-block; 
+    position: relative;
 }
 
 .btn-white:hover {
-  background-color: white;
-  color: #333;
-  cursor: pointer;
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(111, 78, 55, 0.4);
+    z-index: 1; 
 }
 
 
@@ -178,24 +190,24 @@ a {
   .wrapper {
     height: auto;
   }
-  
+
   nav {
     flex-direction: column;
     align-items: center;
   }
-  
+
   a.logo {
     margin-top: 1.5em;
     margin-bottom: 1.5em;
     margin-right: 0px;
   }
-  
+
   ul {
     width: 100%;
     margin-bottom: 1em;
     justify-content: space-between;
   }
-  
+
   ul li a {
     margin-left: 0px;
   }
@@ -205,16 +217,16 @@ a {
   a.logo {
     margin: 1.5em;
   }
-  
+
   ul {
     flex-direction: column;
   }
-  
+
   ul li {
     margin: 0.3em;
     text-align: center;
   }
-  
+
   ul li a {
     margin-left: 0px;
   }
@@ -230,17 +242,18 @@ a {
 .mat-icon {
   vertical-align: middle;
 }
+
 .bg-image {
   /* The image used */
-  background-image: url("../../assets/img/food1.jpg"); 
-  
+  background-image: url("../../assets/img/food1.jpg");
+
   /* Add the blur effect */
   filter: blur(3px);
   -webkit-filter: blur(3px);
-  
+
   /* Full height */
-  height: 50%; 
-  
+  height: 50%;
+
   /* Center and scale the image nicely */
   background-position: center;
   background-repeat: no-repeat;
@@ -249,8 +262,10 @@ a {
 
 /* Position text in the middle of the page/image */
 .bg-text {
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0, 0.8); /* Black w/opacity/see-through */
+  background-color: rgb(0, 0, 0);
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.8);
+  /* Black w/opacity/see-through */
   color: white;
   font-weight: bold;
   border: 3px solid #f1f1f1;
