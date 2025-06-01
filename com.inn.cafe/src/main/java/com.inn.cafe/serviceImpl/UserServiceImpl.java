@@ -21,6 +21,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.security.SecureRandom;
 import java.util.*;
 
 @Slf4j
@@ -190,15 +191,40 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public ResponseEntity<String> forgotPassword(Map<String, String> requestMap) {
-        try{
-            User user = userDao.findByEmail(requestMap.get("email"));
-            if(!Objects.isNull(user) && !Strings.isNullOrEmpty(user.getEmail()))
-                emailUtils.forgotMail(user.getEmail(), "Credentials by Cafe Management System", user.getPassword());
-            return CafeUtils.getResponseEntity("Check your mail for Credentials.", HttpStatus.OK);
-        }catch (Exception ex){
+        try {
+            if (requestMap == null || !requestMap.containsKey("email") || Strings.isNullOrEmpty(requestMap.get("email"))) {
+                return CafeUtils.getResponseEntity("Email là bắt buộc", HttpStatus.BAD_REQUEST);
+            }
+
+            String email = requestMap.get("email").toLowerCase(Locale.ROOT);
+            User user = userDao.findByEmail(email);
+            if (user == null || Strings.isNullOrEmpty(user.getEmail())) {
+                return CafeUtils.getResponseEntity("Email không tồn tại", HttpStatus.NOT_FOUND);
+            }
+
+            String newPassword = generateRandomPassword(10);
+
+            user.setPassword(passwordEncoder.encode(newPassword));
+            userDao.save(user);
+
+            emailUtils.forgotMail(user.getEmail(), "Đặt Lại Mật Khẩu - Cafe Management System", newPassword);
+
+            return CafeUtils.getResponseEntity("Mật khẩu mới đã được gửi đến email của bạn", HttpStatus.OK);
+        } catch (Exception ex) {
             ex.printStackTrace();
+            log.error("Error in forgotPassword: {}", ex.getMessage());
         }
         return CafeUtils.getResponseEntity(CafeConstants.SOMETHING_WENT_WRONG, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    private String generateRandomPassword(int length) {
+        String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()";
+        SecureRandom random = new SecureRandom();
+        StringBuilder password = new StringBuilder(length);
+        for (int i = 0; i < length; i++) {
+            password.append(characters.charAt(random.nextInt(characters.length())));
+        }
+        return password.toString();
     }
 
 
