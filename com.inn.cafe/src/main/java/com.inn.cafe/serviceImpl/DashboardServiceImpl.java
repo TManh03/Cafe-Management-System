@@ -9,7 +9,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -31,5 +33,20 @@ public class DashboardServiceImpl implements DashboardService {
         map.put("product", productDao.count());
         map.put("bill", billDao.count());
         return new ResponseEntity<>(map, HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<List<Map<String, Object>>> getMonthlyRevenue() {
+        List<Object[]> results = billDao.getMonthlyRevenue();
+        List<Map<String, Object>> response = new ArrayList<>();
+
+        for (Object[] row : results) {
+            Map<String, Object> map = new HashMap<>();
+            map.put("month", row[0]);
+            map.put("revenue", row[1]);
+            response.add(map);
+        }
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }

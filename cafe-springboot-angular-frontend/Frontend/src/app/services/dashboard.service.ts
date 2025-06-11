@@ -8,9 +8,13 @@ import { environment } from 'src/environments/environment';
 export class DashboardService {
   url = environment.apiUrl;
 
-  constructor(private httpClient:HttpClient) { }
+  constructor(private httpClient: HttpClient) { }
 
-  getDetails(){
-    return this.httpClient.get(this.url+"/dashboard/details");
+  getDetails() {
+    return this.httpClient.get(this.url + "/dashboard/details");
+  }
+
+  getMonthlyRevenue() {
+    return this.httpClient.get(this.url + "/dashboard/monthly-revenue");
   }
 }

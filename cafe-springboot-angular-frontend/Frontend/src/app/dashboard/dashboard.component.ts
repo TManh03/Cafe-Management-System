@@ -13,6 +13,7 @@ export class DashboardComponent implements AfterViewInit {
 
 	responseMessage: any;
 	data: any;
+	monthlyRevenue: any[] = [];
 
 	ngAfterViewInit() { }
 
@@ -22,6 +23,7 @@ export class DashboardComponent implements AfterViewInit {
 	) {
 		this.ngxService.start();
 		this.dashboardData();
+		this.loadMonthlyRevenue();
 	}
 
 	dashboardData(){
@@ -40,5 +42,22 @@ export class DashboardComponent implements AfterViewInit {
 			this.snackbarService.openSnackBar(this.responseMessage,GlobalConstants.error);
 		})
 	}
+
+	loadMonthlyRevenue() {
+    this.dashboardService.getMonthlyRevenue().subscribe(
+      (response: any) => {
+        this.monthlyRevenue = response;
+      },
+      (error: any) => {
+        this.handleError(error, 'Lỗi khi tải doanh thu theo tháng');
+      }
+    );
+  }
+
+  private handleError(error: any, fallbackMsg: string) {
+    console.log(error);
+    this.responseMessage = error.error?.message || fallbackMsg || GlobalConstants.genericError;
+    this.snackbarService.openSnackBar(this.responseMessage, GlobalConstants.error);
+  }
 
 }

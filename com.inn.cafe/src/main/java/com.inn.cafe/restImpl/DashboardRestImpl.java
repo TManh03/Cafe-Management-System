@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -17,5 +18,10 @@ public class DashboardRestImpl implements DashboardRest {
     @Override
     public ResponseEntity<Map<String, Object>> getCount() {
         return dashboardService.getCount();
+    }
+
+    @Override
+    public ResponseEntity<List<Map<String, Object>>> getMonthlyRevenue() {
+        return dashboardService.getMonthlyRevenue();
     }
 }

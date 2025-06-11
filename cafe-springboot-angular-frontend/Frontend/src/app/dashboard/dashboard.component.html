@@ -34,8 +34,8 @@
             <div class="card">
                 <div class="container">
                     <div style="display: flex; justify-content: space-between; align-items: center;">
-                    <h2 class="title" style="margin: 0;">Tổng Hóa Đơn</h2>
-                    <mat-icon>receipt_long</mat-icon>
+                        <h2 class="title" style="margin: 0;">Tổng Hóa Đơn</h2>
+                        <mat-icon>receipt_long</mat-icon>
                     </div>
                     <h1 class="title" style="margin-top: 20px;">{{data?.bill}}</h1>
                     <p><button class="button" [routerLink]="['/cafe/bill']">Xem Hóa Đơn</button></p>
@@ -43,4 +43,24 @@
             </div>
         </div>
     </div>
+
+    <mat-card>
+        <p class="text-heading2-bold">Doanh Thu Theo Tháng</p>
+        <div class="table-container">
+            <table class="revenue-table">
+                <thead>
+                    <tr>
+                        <th>Tháng</th>
+                        <th>Doanh Thu (VNĐ)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of monthlyRevenue">
+                        <td>{{ item.month }}</td>
+                        <td>{{ item.revenue | number:'1.0-0' }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </mat-card>
 </body>

@@ -105,6 +105,66 @@ html {
     box-shadow: 0 2px 8px rgba(111, 78, 55, 0.3);
 }
 
+.table-container {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 16px;
+    margin: 0 auto;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+.revenue-table {
+    width: 100%;
+    border: 2px solid #6f4e37;
+    border-radius: 12px;
+    overflow: hidden;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 15px;
+    color: #4a2c1a;
+}
+
+.revenue-table th {
+    background: linear-gradient(to right, #6f4e37, #8b6f47);
+    color: white;
+    font-weight: bold;
+    padding: 12px;
+    white-space: nowrap;
+    text-align: left;
+}
+
+.revenue-table td {
+    padding: 12px;
+    white-space: nowrap;
+    border-top: 2px solid #6f4e37;
+    text-align: left;
+}
+
+.revenue-table tr:nth-child(even) td {
+    background-color: #f9f1e7;
+}
+
+.revenue-table tr:hover td {
+    background-color: #e0d1c1;
+    transition: background-color 0.3s ease;
+}
+
+.revenue-table th:first-child {
+    border-top-left-radius: 12px;
+}
+
+.revenue-table th:last-child {
+    border-top-right-radius: 12px;
+}
+
+.revenue-table td:last-child,
+.revenue-table th:last-child {
+    border-left: 2px solid #6f4e37;
+}
+
 @media screen and (max-width: 650px) {
     .column {
         width: 100%;
