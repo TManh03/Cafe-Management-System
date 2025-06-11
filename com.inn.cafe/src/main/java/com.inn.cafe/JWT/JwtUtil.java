@@ -18,7 +18,6 @@ import javax.crypto.SecretKey;
 @Service
 public class JwtUtil {
 
-//    private final String secret = "btechdays";
     private final SecretKey secret = Keys.hmacShaKeyFor("maitienmanhmaitienmanhmaitienmanh".getBytes(StandardCharsets.UTF_8));
 
     public String extractUsername(String token){

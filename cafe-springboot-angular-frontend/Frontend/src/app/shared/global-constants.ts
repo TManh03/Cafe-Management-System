@@ -16,6 +16,8 @@ export class GlobalConstants{
 
     public static contactNumberRegex:string = "^[e0-9]{10,10}$";
 
+    public static passwordRegex: RegExp = /^(?=.*[A-Z])(?=.*[\W_]).{8,}$/;
+
     //Variable
     public static error:string = "error";
 }
