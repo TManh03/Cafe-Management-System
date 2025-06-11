@@ -14,7 +14,7 @@ export class GlobalConstants{
 
     public static emailRegex:string = "[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}";
 
-    public static contactNumberRegex:string = "^[e0-9]{10,10}$";
+    public static contactNumberRegex:string = "^[0-9]{10}$";
 
     public static passwordRegex: RegExp = /^(?=.*[A-Z])(?=.*[\W_]).{8,}$/;
 
