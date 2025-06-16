@@ -33,8 +33,8 @@
         </ng-container>
 
         <ng-container matColumnDef="price">
-            <th mat-header-cell *matHeaderCellDef>Giá</th>
-            <td mat-cell *matCellDef="let element">{{element.price}}</td>
+            <th mat-header-cell *matHeaderCellDef>Giá (VNĐ)</th>
+            <td mat-cell *matCellDef="let element">{{element.price | number:'1.0-0' }}</td>
         </ng-container>
 
         <ng-container matColumnDef="edit">
